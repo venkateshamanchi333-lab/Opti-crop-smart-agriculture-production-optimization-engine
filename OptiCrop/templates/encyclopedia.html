@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="encyclopedia-page">
+    <div class="encyclopedia-grid">
+        {% for crop, info in crop_data.items() %}
+        <article class="encyclopedia-card">
+            <img src="/{{ info.image }}" alt="{{ info.display_name }}" class="encyclopedia-image" />
+            <h3>{{ info.display_name }}</h3>
+            <p><strong>Scientific Name:</strong> {{ info.scientific_name }}</p>
+            <p><strong>Season:</strong> {{ info.season }}</p>
+            <p><strong>Water Needs:</strong> {{ info.water_requirement }}</p>
+            <p><strong>Fertilizer:</strong> {{ info.fertilizer }}</p>
+            <p><strong>Duration:</strong> {{ info.growing_duration }}</p>
+            <p><strong>Harvest:</strong> {{ info.harvest_time }}</p>
+            <p><strong>Market Value:</strong> {{ info.market_value }}</p>
+            <p>{{ info.description }}</p>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

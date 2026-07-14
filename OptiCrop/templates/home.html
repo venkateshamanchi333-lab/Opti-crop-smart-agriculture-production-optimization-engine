@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="hero">
+    <div>
+        <h1>Smart Agricultural Production Optimization Engine</h1>
+        <p>
+            OptiCrop recommends suitable crops using Nitrogen, Phosphorous, Potassium,
+            temperature, humidity, pH, and rainfall. It helps farmers, researchers,
+            and policymakers make data-driven farming decisions.
+        </p>
+        <div class="actions">
+            <a class="btn primary" href="/recommend">Start Prediction</a>
+            <a class="btn secondary" href="/dashboard">View Analytics</a>
+        </div>
+    </div>
+</section>
+
+<section class="section-grid">
+    <article>
+        <h3>Crop Recommendation</h3>
+        <p>Predicts the most suitable crop and displays confidence, image, productivity, season, and growing tips.</p>
+    </article>
+    <article>
+        <h3>Suitability Assessment</h3>
+        <p>Checks whether current soil and climate conditions are suitable for a selected crop.</p>
+    </article>
+    <article>
+        <h3>Agricultural Analytics</h3>
+        <p>Shows crop distribution, nutrient analysis, rainfall trends, pH distribution, correlations, and model performance.</p>
+    </article>
+</section>
+{% endblock %}

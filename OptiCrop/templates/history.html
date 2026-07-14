@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="page-header">
+    <h1>Prediction History</h1>
+    <p>Stored crop recommendations and suitability checks from the SQLite database.</p>
+    <a class="btn secondary" href="/export-csv">Export CSV</a>
+</section>
+
+<section class="card">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Crop</th>
+                <th>N</th>
+                <th>P</th>
+                <th>K</th>
+                <th>Temp</th>
+                <th>Humidity</th>
+                <th>pH</th>
+                <th>Rainfall</th>
+                <th>Confidence</th>
+                <th>Model</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td>{{ row.prediction_id }}</td>
+                    <td>{{ crop_info.get(row.crop_name, {}).get("name", row.crop_name or "N/A") }}</td>
+                    <td>{{ row.nitrogen }}</td>
+                    <td>{{ row.phosphorous }}</td>
+                    <td>{{ row.potassium }}</td>
+                    <td>{{ row.temperature }}</td>
+                    <td>{{ row.humidity }}</td>
+                    <td>{{ row.ph }}</td>
+                    <td>{{ row.rainfall }}</td>
+                    <td>{{ row.confidence_score }}%</td>
+                    <td>{{ row.model_used }}</td>
+                </tr>
+            {% else %}
+                <tr><td colspan="11">No prediction history available.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

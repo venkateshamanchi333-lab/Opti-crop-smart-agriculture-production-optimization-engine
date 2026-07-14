@@ -1,0 +1,129 @@
+# Project Testing
+
+## Overview
+
+Project Testing is the process of verifying that every component of OptiCrop functions as expected. The objective of testing was to identify defects, validate system behavior, and ensure that the application provides accurate crop recommendations under different input conditions.
+
+Each module was tested independently before performing complete system integration.
+
+---
+
+# Testing Objectives
+
+The testing phase was carried out to:
+
+- Verify the correctness of every module.
+- Ensure accurate crop prediction results.
+- Validate user input before processing.
+- Check communication between the frontend, backend, and database.
+- Improve system reliability and stability.
+
+---
+
+# Testing Strategy
+
+The application was tested in multiple stages to ensure complete functionality.
+
+### Unit Testing
+
+Each individual module was tested separately.
+
+Modules tested:
+
+- User Authentication
+- Crop Prediction
+- Database Operations
+- Feedback Module
+
+---
+
+### Integration Testing
+
+Integration testing verified communication between different components.
+
+The following integrations were tested:
+
+- Frontend ↔ Backend
+- Backend ↔ Machine Learning Model
+- Backend ↔ MongoDB Database
+
+---
+
+### Functional Testing
+
+Functional testing confirmed that all project features behaved according to the requirements.
+
+Features tested include:
+
+- User Registration
+- User Login
+- Crop Recommendation
+- Prediction History
+- Feedback Submission
+
+---
+
+### System Testing
+
+The complete application was tested as a single integrated system to verify end-to-end functionality.
+
+The workflow tested was:
+
+User Login → Enter Soil Parameters → Generate Prediction → Store Prediction → Display Result
+
+---
+
+# Test Cases
+
+| Test Case | Expected Result | Status |
+|-----------|-----------------|--------|
+| User Registration | New account created successfully | Passed |
+| User Login | User authenticated successfully | Passed |
+| Valid Crop Prediction | Recommended crop displayed | Passed |
+| Invalid Input | Validation message displayed | Passed |
+| Save Prediction | Prediction stored in database | Passed |
+| View Prediction History | Previous records displayed | Passed |
+| Submit Feedback | Feedback stored successfully | Passed |
+
+---
+
+# Validation Checks
+
+The following input validations were implemented:
+
+- Empty fields are not accepted.
+- Only numeric values are allowed for agricultural parameters.
+- Invalid values generate appropriate error messages.
+- Required fields must be completed before prediction.
+
+---
+
+# Issues Encountered
+
+During testing, the following issues were identified and resolved:
+
+- Input validation inconsistencies.
+- API communication errors.
+- Database connection issues.
+- Prediction response formatting.
+- Minor user interface alignment problems.
+
+All identified issues were corrected before final deployment.
+
+---
+
+# Testing Outcome
+
+The completed testing process confirmed that:
+
+- All modules function correctly.
+- Crop recommendations are generated successfully.
+- Data is stored and retrieved without errors.
+- The application performs reliably under normal operating conditions.
+- The integrated system satisfies the defined project requirements.
+
+---
+
+# Conclusion
+
+The testing phase ensured that OptiCrop is stable, reliable, and ready for deployment. By validating every module and verifying complete system integration, the application delivers accurate crop recommendations while providing a smooth and user-friendly experience.

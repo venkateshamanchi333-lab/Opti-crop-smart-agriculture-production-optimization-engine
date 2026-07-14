@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="chatbot-page">
+    <div class="chatbot-card">
+        <div class="chatbot-header">
+            <div>
+                <h2>Smart AI Assistant</h2>
+                <p>Your farming advisor for crop choices, soil health, and irrigation guidance.</p>
+            </div>
+        </div>
+        <div class="assistant-suggestions">
+            <span class="suggestion-pill">Recommend a crop</span>
+            <span class="suggestion-pill">Improve soil pH</span>
+            <span class="suggestion-pill">Irrigation advice</span>
+            <span class="suggestion-pill">Weather risk tips</span>
+        </div>
+        <form method="post" class="chatbot-form">
+            <div class="input-row">
+                <label>Ask the assistant</label>
+                <textarea name="question" rows="4" placeholder="e.g. Which crop is best for my soil and weather?" required>{{ question or '' }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Ask Assistant</button>
+        </form>
+        {% if answer %}
+        <div class="chatbot-answer">
+            <h4>Assistant Response</h4>
+            <p>{{ answer }}</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

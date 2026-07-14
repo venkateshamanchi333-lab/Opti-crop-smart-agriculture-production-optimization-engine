@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="page-header">
+    <h1>Contact & Feedback</h1>
+    <p><p>We value your feedback. Share your suggestions to help us improve the OptiCrop platform and provide a better farming experience.</p></p>
+</section>
+
+<section class="card narrow">
+    <form class="form-grid" method="post">
+        <label>Name
+            <input type="text" name="name" required>
+        </label>
+        <label>Email
+            <input type="email" name="email" required>
+        </label>
+        <label>Rating
+            <select name="rating" required>
+                <option value="">Choose rating</option>
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Good</option>
+                <option value="3">3 - Average</option>
+                <option value="2">2 - Needs Improvement</option>
+                <option value="1">1 - Poor</option>
+            </select>
+        </label>
+        <button class="btn primary" type="submit">Submit Feedback</button>
+    </form>
+</section>
+{% endblock %}

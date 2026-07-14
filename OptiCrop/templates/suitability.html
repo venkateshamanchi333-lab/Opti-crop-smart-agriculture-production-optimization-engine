@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="page-header">
+    <h1>Crop Suitability Assessment</h1>
+    <p>Select a crop and evaluate whether the entered conditions are suitable.</p>
+</section>
+
+<section class="two-column">
+    <form class="card form-grid" method="post">
+        <label>Choose Crop
+            <select name="crop" required>
+                <option value="">Select crop</option>
+                {% for crop_key, crop in crops.items() %}
+                    <option value="{{ crop_key }}">{{ crop.name }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        {% include "partials_input_fields.html" %}
+        <button class="btn primary" type="submit">Check Suitability</button>
+    </form>
+
+    <div class="card">
+        {% if result %}
+            <h2>{{ result.crop.name }} Suitability</h2>
+            <p class="score">Suitability Score: {{ result.analysis.score }}%</p>
+            <p><strong>Status:</strong> {{ result.analysis.status }}</p>
+            <p><strong>Missing Nutrients:</strong>
+                {{ result.analysis.missing_nutrients | join(", ") if result.analysis.missing_nutrients else "None" }}
+            </p>
+            <p><strong>Soil Analysis:</strong> {{ result.analysis.soil_analysis }}</p>
+            <p><strong>Climate Compatibility:</strong> {{ result.analysis.climate_compatibility }}</p>
+            <h3>Suggestions for Improvement</h3>
+            <ul>
+                {% for suggestion in result.analysis.suggestions %}
+                    <li>{{ suggestion }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="empty-state">
+                <h2>Suitability Result</h2>
+                <p>The suitability score, missing nutrients, soil analysis, climate compatibility, and suggestions will appear here.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

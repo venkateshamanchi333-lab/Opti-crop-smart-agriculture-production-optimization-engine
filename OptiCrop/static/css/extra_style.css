@@ -1,0 +1,158 @@
+.page-panel,
+.dashboard-page,
+.soil-page,
+.encyclopedia-page,
+.chatbot-page,
+.info-page,
+.report-page {
+    padding: 2rem 0;
+}
+
+.panel-grid,
+.soil-grid,
+.report-grid,
+.encyclopedia-grid {
+    display: grid;
+    gap: 1.75rem;
+}
+
+.panel-grid,
+.soil-grid {
+    grid-template-columns: 1fr 1.1fr;
+}
+
+.soil-form-card,
+.panel-form-card,
+.soil-result-card,
+.panel-result-card,
+.report-card,
+.encyclopedia-card,
+.chatbot-card,
+.info-card {
+    background: var(--surface);
+    border-radius: 28px;
+    padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: var(--shadow);
+}
+
+.soil-score-grid,
+.result-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.soil-score-card,
+.result-summary-card,
+.report-block {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    padding: 1rem 1.25rem;
+}
+
+.progress-bar {
+    height: 16px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 0.75rem 0;
+}
+
+.progress-filled {
+    height: 100%;
+    background: linear-gradient(90deg, #4eb77a, #7ce392);
+    border-radius: 999px;
+}
+
+.recommendation-group,
+.chatbot-answer,
+.report-meta {
+    margin-top: 1.5rem;
+}
+
+.report-meta p,
+.report-block p,
+.encyclopedia-card p {
+    margin: 0.5rem 0;
+}
+
+.encyclopedia-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.encyclopedia-card {
+    display: grid;
+    gap: 1rem;
+}
+
+.encyclopedia-image {
+    width: 100%;
+    border-radius: 20px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: rgba(255,255,255,0.04);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.history-link {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.contact-form .input-row,
+.chatbot-form .input-row {
+    margin-bottom: 1rem;
+}
+
+.chatbot-header {
+    margin-bottom: 1rem;
+}
+
+.chatbot-header p {
+    margin: 0.35rem 0 0;
+    color: rgba(255,255,255,0.74);
+}
+
+.assistant-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.suggestion-pill {
+    background: rgba(78,183,122,0.16);
+    border: 1px solid rgba(78,183,122,0.3);
+    padding: 0.45rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.contact-form textarea,
+.chatbot-form textarea,
+.contact-form input,
+.chatbot-form input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+}
+
+@media (max-width: 920px) {
+    .panel-grid,
+    .soil-grid,
+    .report-grid,
+    .encyclopedia-grid {
+        grid-template-columns: 1fr;
+    }
+}

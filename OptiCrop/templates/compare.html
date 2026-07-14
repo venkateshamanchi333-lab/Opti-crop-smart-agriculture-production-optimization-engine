@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="page-panel">
+    <div class="panel-grid">
+        <div class="panel-form-card">
+            <h2>Crop Comparison</h2>
+            <p>Compare two crops using the same soil and weather inputs.</p>
+            <form method="post" class="recommend-form">
+                <div class="input-row">
+                    <label>First Crop</label>
+                    <select name="crop_one">
+                        {% for crop in crop_list %}
+                        <option value="{{ crop }}" {% if selected_crop_one == crop %}selected{% endif %}>{{ crop.title() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-row">
+                    <label>Second Crop</label>
+                    <select name="crop_two">
+                        {% for crop in crop_list %}
+                        <option value="{{ crop }}" {% if selected_crop_two == crop %}selected{% endif %}>{{ crop.title() }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-row">
+                    <label>Nitrogen (N)</label>
+                    <input type="number" name="nitrogen" step="0.1" value="{{ inputs.nitrogen if inputs else '' }}" required />
+                </div>
+                <div class="input-row">
+                    <label>Phosphorous (P)</label>
+                    <input type="number" name="phosphorous" step="0.1" value="{{ inputs.phosphorous if inputs else '' }}" required />
+                </div>
+                <div class="input-row">
+                    <label>Potassium (K)</label>
+                    <input type="number" name="potassium" step="0.1" value="{{ inputs.potassium if inputs else '' }}" required />
+                </div>
+                <div class="input-row">
+                    <label>Temperature (°C)</label>
+                    <input type="number" name="temperature" step="0.1" value="{{ inputs.temperature if inputs else '' }}" required />
+                </div>
+                <div class="input-row">
+                    <label>Humidity (%)</label>
+                    <input type="number" name="humidity" step="0.1" value="{{ inputs.humidity if inputs else '' }}" required />
+                </div>
+                <div class="input-row">
+                    <label>pH Level</label>
+                    <input type="number" name="ph" step="0.1" value="{{ inputs.ph if inputs else '' }}" required />
+                </div>
+                <div class="input-row">
+                    <label>Rainfall (mm)</label>
+                    <input type="number" name="rainfall" step="0.1" value="{{ inputs.rainfall if inputs else '' }}" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Compare Crops</button>
+            </form>
+        </div>
+        <div class="panel-result-card">
+            {% if comparison %}
+            <div class="result-summary-grid">
+                {% for item in comparison %}
+                <div class="result-summary-card">
+                    <h3>{{ item.crop_name }}</h3>
+                    <p><strong>Suitability:</strong> {{ item.score }}/100</p>
+                    <p><strong>Status:</strong> {{ item.status }}</p>
+                    <p><strong>Water:</strong> {{ item.water_requirement }}</p>
+                    <p><strong>Season:</strong> {{ item.season }}</p>
+                    <p><strong>Best for:</strong> {{ item.reason }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="empty-state">
+                <p>Select two crops and enter your field values to compare them.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

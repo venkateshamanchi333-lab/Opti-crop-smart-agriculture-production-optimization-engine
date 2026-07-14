@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="page-header">
+    <h1>Crop Recommendation</h1>
+    <p>Enter soil nutrients and environmental conditions to predict the best crop.</p>
+</section>
+
+<section class="two-column">
+    <form class="card form-grid" method="post">
+        {% include "partials_input_fields.html" %}
+        <button class="btn primary" type="submit">Predict Crop</button>
+    </form>
+
+    <div class="card">
+        {% if result %}
+            <img class="crop-image" src="/{{ result.crop.image }}" alt="{{ result.crop.name }}">
+            <h2>{{ result.crop.name }}</h2>
+            <p class="score">Confidence Score: {{ result.confidence }}%</p>
+            <p><strong>Expected Productivity:</strong> {{ result.crop.productivity }}</p>
+            <p><strong>Suitable Season:</strong> {{ result.crop.season }}</p>
+            <h3>Growing Tips</h3>
+            <ul>
+                {% for tip in result.crop.tips %}
+                    <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+            <a class="btn secondary" href="/history">View Prediction History</a>
+        {% else %}
+            <div class="empty-state">
+                <h2>Prediction Result</h2>
+                <p>Your recommended crop, confidence score, crop image, productivity, season, and growing tips will appear here.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="page-header">
+    <h1>🌿 Agricultural Analytics</h1>
+    <p>Interactive charts for crop distribution, nutrients, climate trends, correlation, feature importance, and model statistics.</p>
+</section>
+
+<section class="dashboard-grid">
+    <div class="card chart-card">
+        <h2>Crop Distribution</h2>
+        <canvas data-chart="doughnut" data-label="Crop Count" data-labels='{{ data.crop_counts.keys() | list | tojson }}' data-values='{{ data.crop_counts.values() | list | tojson }}'></canvas>
+    </div>
+    <div class="card chart-card">
+        <h2>Soil Nutrient Analysis</h2>
+        <canvas data-chart="bar" data-label="Average Value" data-labels='{{ data.nutrient_means.keys() | list | tojson }}' data-values='{{ data.nutrient_means.values() | list | tojson }}'></canvas>
+    </div>
+    <div class="card chart-card">
+        <h2>Rainfall Trends</h2>
+        <canvas data-chart="bar" data-label="Average Rainfall" data-labels='{{ data.rainfall.keys() | list | tojson }}' data-values='{{ data.rainfall.values() | list | tojson }}'></canvas>
+    </div>
+    <div class="card chart-card">
+        <h2>Temperature Distribution</h2>
+        <canvas data-chart="line" data-label="Average Temperature" data-labels='{{ data.temperature.keys() | list | tojson }}' data-values='{{ data.temperature.values() | list | tojson }}'></canvas>
+    </div>
+    <div class="card chart-card">
+        <h2>pH Distribution</h2>
+        <canvas data-chart="line" data-label="Average pH" data-labels='{{ data.ph.keys() | list | tojson }}' data-values='{{ data.ph.values() | list | tojson }}'></canvas>
+    </div>
+    <div class="card chart-card">
+        <h2>Feature Importance</h2>
+        <canvas data-chart="bar" data-label="Importance" data-labels='{{ data.feature_importance | map(attribute="feature") | list | tojson }}' data-values='{{ data.feature_importance | map(attribute="value") | list | tojson }}'></canvas>
+    </div>
+</section>
+
+<section class="two-column">
+    <div class="card">
+        <h2>Correlation Heatmap</h2>
+        <div class="heatmap">
+            {% for row in data.correlation.matrix %}
+                {% set outer = loop.index0 %}
+                {% for value in row %}
+                    <span style="--shade: {{ value | abs }}">{{ value }}</span>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <p class="muted">Features: {{ data.correlation.labels | join(", ") }}</p>
+    </div>
+    <div class="card">
+        <h2>Prediction Statistics</h2>
+        <table class="data-table">
+            <thead>
+                <tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th></tr>
+            </thead>
+            <tbody>
+                {% for model, scores in data.model_results.items() %}
+                    <tr>
+                        <td>{{ model }}</td>
+                        <td>{{ scores.accuracy }}</td>
+                        <td>{{ scores.precision }}</td>
+                        <td>{{ scores.recall }}</td>
+                        <td>{{ scores.f1_score }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+{% block content %}
+<section class="report-page">
+    <div class="report-card">
+        <h2>Prediction Report</h2>
+        <div class="report-meta">
+            <p><strong>Date:</strong> {{ created_at }}</p>
+            <p><strong>Crop:</strong> {{ prediction.crop }}</p>
+            <p><strong>Confidence:</strong> {{ prediction.confidence }}%</p>
+        </div>
+        <div class="report-grid">
+            <div class="report-block">
+                <h3>Input Summary</h3>
+                <ul>
+                    {% for key, value in inputs.items() %}
+                    <li><strong>{{ key.title() }}:</strong> {{ value }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="report-block">
+                <h3>Crop Details</h3>
+                <p><strong>Scientific Name:</strong> {{ prediction.scientific_name }}</p>
+                <p><strong>Season:</strong> {{ prediction.season }}</p>
+                <p><strong>Water Needs:</strong> {{ prediction.water_requirement }}</p>
+                <p><strong>Fertilizer:</strong> {{ prediction.fertilizer }}</p>
+            </div>
+        </div>
+        <div class="report-block">
+            <h3>AI Explanation</h3>
+            <ul>
+                {% for line in explain %}
+                <li>{{ line }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="report-block">
+            <h3>Soil Health</h3>
+            <p><strong>Score:</strong> {{ soil_scores.overall_soil_health }} / 100</p>
+            <ul>
+                <li>Nitrogen: {{ soil_scores.nitrogen_score }}</li>
+                <li>Phosphorous: {{ soil_scores.phosphorous_score }}</li>
+                <li>Potassium: {{ soil_scores.potassium_score }}</li>
+                <li>pH: {{ soil_scores.pH_score }}</li>
+            </ul>
+        </div>
+        <div class="report-block">
+            <h3>Yield Prediction</h3>
+            <p><strong>Estimate:</strong> {{ yield_estimate.label }}</p>
+            <p><strong>Score:</strong> {{ yield_estimate.score }}%</p>
+        </div>
+        <div class="report-block">
+            <h3>Sustainability</h3>
+            <p><strong>Water Efficiency:</strong> {{ sustainability.water_efficiency }}%</p>
+            <p><strong>Fertilizer Efficiency:</strong> {{ sustainability.fertilizer_efficiency }}%</p>
+            <p><strong>Eco-Friendly Score:</strong> {{ sustainability.eco_friendly_score }}%</p>
+            <p><strong>Carbon Impact:</strong> {{ sustainability.carbon_impact }}%</p>
+            <p><strong>Rating:</strong> {{ sustainability.rating }}</p>
+        </div>
+        <div class="report-block">
+            <h3>Farming Advice</h3>
+            <ul>
+                {% for tip in advice %}
+                <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="report-actions">
+            <a class="btn btn-secondary" href="/history">Back to History</a>
+            <a class="btn btn-primary" href="?format=pdf">Download PDF</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
